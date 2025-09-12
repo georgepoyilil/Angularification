@@ -1,4 +1,5 @@
-import { Component, signal } from '@angular/core';
+import { Component, computed, signal } from '@angular/core';
+import { interval, map, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-signals-demo',
@@ -8,14 +9,31 @@ import { Component, signal } from '@angular/core';
 })
 export class SignalsDemo {
 
-   count = signal(0);
+  // ----------------- Signals -----------------
+  count = signal(0);
+  double = computed(() => this.count() * 2);
+
+  // ----------------- RxJS -----------------
+  intervalValue = 0;
+  rxjsSubscription!: Subscription;
+
+  ngOnInit() {
+    // RxJS interval example
+    this.rxjsSubscription = interval(1000)
+      .pipe(map(val => val + 1))
+      .subscribe(val => this.intervalValue = val);
+  }
+
+  ngOnDestroy() {
+    this.rxjsSubscription.unsubscribe();
+  }
 
   increment() {
-    this.count.update(v => v + 1);
+    this.count.update(c => c + 1);
   }
 
   decrement() {
-    this.count.update(v => v - 1);
+    this.count.update(c => c - 1);
   }
 
 }

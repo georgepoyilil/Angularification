@@ -1,4 +1,14 @@
-<h2>🔔 Signals Demo</h2>
-<p>Count: {{ count() }}</p>
-<button (click)="increment()">Increment</button>
-<button (click)="decrement()">Decrement</button>
+<h2>📡 Signals vs RxJS Demo</h2>
+
+<div class="demo-section">
+  <h3>Signals Example</h3>
+  <p>Count: {{ count() }}</p>
+  <p>Double: {{ double() }}</p>
+  <button (click)="increment()">Increment</button>
+  <button (click)="decrement()">Decrement</button>
+</div>
+
+<div class="demo-section">
+  <h3>RxJS Interval Example</h3>
+  <p>Seconds elapsed: {{ intervalValue }}</p>
+</div>
