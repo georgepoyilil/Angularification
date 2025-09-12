@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ViewContainerRef } from '@angular/core';
+import { DynamicChild } from './dynamic-child';
 
 @Component({
   selector: 'app-dynamic-demo',
@@ -7,5 +8,10 @@ import { Component } from '@angular/core';
   styleUrl: './dynamic-demo.scss'
 })
 export class DynamicDemo {
+ @ViewChild('container', { read: ViewContainerRef }) container!: ViewContainerRef;
 
+  load() {
+    this.container.clear();
+    this.container.createComponent(DynamicChild);
+  }
 }

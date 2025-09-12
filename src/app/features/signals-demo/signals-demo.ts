@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 
 @Component({
   selector: 'app-signals-demo',
@@ -7,5 +7,15 @@ import { Component } from '@angular/core';
   styleUrl: './signals-demo.scss'
 })
 export class SignalsDemo {
+
+   count = signal(0);
+
+  increment() {
+    this.count.update(v => v + 1);
+  }
+
+  decrement() {
+    this.count.update(v => v - 1);
+  }
 
 }

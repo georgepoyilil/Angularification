@@ -57,3 +57,25 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 ## Additional Resources
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+Here’s how the NgRx flow works in your project:
+
+Actions
+You dispatch actions like increment or decrement (from counter.actions.ts) to signal a state change.
+
+Reducers
+The reducer (in counter.reducer.ts) listens for these actions and updates the state (counter value) accordingly.
+
+Selectors
+Components use selectors (e.g., state => state.counter) to read the current state from the store.
+
+Effects
+Effects (in counter.effects.ts) listen for actions and perform side effects (like logging to the console), but do not change the state directly.
+
+Component
+The component (ngrx-demo.ts) dispatches actions and subscribes to state changes using the store.
+
+Flow:
+Component → dispatches Action → Reducer updates State → Selector reads State → Effect handles side effects
+
+This pattern keeps state management predictable and side effects isolated.
